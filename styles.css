@@ -37,7 +37,7 @@ html, body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 0.5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,16 +53,12 @@ section {
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
   h1 {
-    font-size: 2.5rem;
+    font-size: 6vw;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 5vw;
   }
 
   .project-link {
@@ -71,16 +67,12 @@ section {
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 0.5rem;
-  }
-
   h1 {
-    font-size: 2rem;
+    font-size: 8vw;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 6vw;
   }
 
   .project-link {
@@ -88,7 +80,7 @@ section {
   }
 
   nav a {
-    font-size: 0.9rem;
+    font-size: 4vw;
   }
 }
 
