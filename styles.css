@@ -38,6 +38,10 @@ html, body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 section {
@@ -45,6 +49,7 @@ section {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
