@@ -1,77 +1,396 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samarth's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #4ECDC4;
+            --background-light: #F7F7F7;
+            --text-light: #333;
+            --background-dark: #2C3E50;
+            --text-dark: #ECF0F1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--background-light);
+            transition: all 0.3s ease;
+        }
+
+        
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        nav {
+            margin-top: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .toggle-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .toggle-button:hover {
+            background-color: #45b7aa;
+        }
+
+        section {
+            margin: 4rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .skill-list, .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item, .project-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-item:hover, .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .project-link:hover {
+            background-color: #45b7aa;
+        }
+
+        .interests-list, .hobbies-list, .considerations-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .interests-list li, .hobbies-list li, .considerations-list li {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-list {
+            list-style-type: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-list a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .skill-item, .dark-mode .project-item {
+            background-color: #34495e;
+            color: var(--text-dark);
+        }
+
+        .dark-mode h2 {
+            color: var(--secondary-color);
+        }
+
+        .dark-mode .contact-list a {
+            color: var(--secondary-color);
+        }
+
+        .dark-mode .contact-list a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-section {
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1 class="portfolio-title">Samarth Sapare</h1>
-        <button class="toggle-button">Toggle Dark Mode</button>
+        <div class="container header-content">
+            <div class="profile-section">
+                <div class="profile-section">
+                    <img src="PassPortSizeSamarth.jpg" 
+                         alt="Samarth Sapare" class="profile-photo floating">
+                <div>
+                    <h1>Samarth Sapare</h1>
+                    <p class="tagline">Aspiring Animator | Storyteller | Creative Mind</p>
+                </div>
+            </div>
+            <nav>
+                </ul>
+            </nav>
+            <button class="toggle-button">Toggle Dark/Light Mode</button>
+        </div>
     </header>
-
-    <main>
-        <section id="about" class="container section">
-            <h2>About Me</h2>
-            <p>I'm an aspiring animator with a passion for storytelling and character development. My goal is to create animations that resonate with diverse audiences and evoke emotions.</p>
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <section id="about" class="container">
+            <p>
+                Hello! I'm Samarth Sapare, an aspiring animator with a passion for storytelling through the art of animation. My goal is to create captivating visual experiences that resonate with audiences, and I thrive on the challenge of bringing ideas to life.<br>
+                From a young age, I have been captivated by the ability of animation to evoke emotions and transport viewers into imaginative worlds.
+            </p>
+            <p>
+                I am proudly Indian, and I embrace the richness of my culture while also being deeply interested in Japanese culture.<br>
+                Inspired by the works of Fujiko F. Fujio and the intricate character development in series like <em>Code Geass</em>, I aim to craft stories that leave a lasting impact.<br>
+                The beloved series <em>Doraemon</em> has particularly inspired me, showcasing the magic of friendship and adventure, which I strive to emulate in my own projects.
+            </p>
+            <p>
+                I am also influenced by the artistic styles of Tetsurō Araki and the character designs of Takeshi Obata, both of whom have contributed significantly to the anime landscape.<br>
+                I am focused on self-improvement, as I believe that growth is essential in honing my craft and becoming a better storyteller.
+            </p>            
         </section>
-
-        <section id="skills" class="container section">
+        
+        </p>
+    </section>
+    
+        <section id="education" class="container">
+            <h2>Education</h2>
+            <div class="skill-list">
+                <div class="skill-item">
+                    <h3>Poornaprajna Education Center</h3>
+                    <p>Indiranagar, Bangalore</p>
+                    <p>Completed 10th Standard (2023)</p>
+                </div>
+                <div class="skill-item">
+                    <h3>National Institute of Open Schooling (NIOS)</h3>
+                    <p>Currently pursuing 11th and 12th Standard</p>
+                    <p>Expected Completion: 2025</p>
+                </div>
+            </div>
+        </section>
+        <section id="skills" class="container">
             <h2>Skills</h2>
             <div class="skill-list">
                 <div class="skill-item">
-                    <h3>Animation</h3>
-                    <p>Keyframing, Character Animation, 2D Animation</p>
+                    <h3>Blender</h3>
+                    <p>Basic knowledge, proficient in keyframing</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Video Editing</h3>
+                    <p>Capable of creating small edits and visual effects</p>
                 </div>
                 <div class="skill-item">
                     <h3>Web Development</h3>
-                    <p>HTML, CSS, JavaScript</p>
+                    <p>Basic knowledge of HTML, CSS, and JavaScript</p>
                 </div>
                 <div class="skill-item">
-                    <h3>Language Skills</h3>
-                    <p>Basic Japanese</p>
+                    <h3>Using A.I tools</h3>
+                    <p>Chat GPT, Claude</p>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="container section">
+        <section id="projects" class="container">
             <h2>Projects</h2>
             <div class="project-list">
                 <div class="project-item">
-                    <h3><a href="https://en.wikipedia.org/wiki/Code_Geass" class="project-link">Code Geass Live Action</a></h3>
-                    <p>A live-action project inspired by the anime <em>Code Geass</em>.</p>
+                    <h3>Code Geass Live Action</h3>
+                    <p>A live-action recreation project of iconic scenes from Code Geass, showcasing my ability to adapt animated content to real-life scenarios.</p>
+                    <a href="https://en.wikipedia.org/wiki/Code_Geass" class="project-link">Learn More</a>
                 </div>
                 <div class="project-item">
                     <h3>Bouncy Ball Animation</h3>
-                    <p>A short animation project showcasing the bouncing motion of a ball.</p>
+                    <p>A fun and simple animation project demonstrating bouncing physics, highlighting my skills in creating realistic motion in digital environments.</p>
+                    <a href="https://drive.google.com/file/d/1fN3p_UmjhPc_cULOe7ezyBxr36HiTUIi/view?usp=drive_link" class="project-link">Download Project</a>
                 </div>
             </div>
         </section>
 
-        <section id="interests" class="container section">
-            <h2>Interests</h2>
+        <section id="interests" class="container">
+            <h2>Interests & Hobbies</h2>
             <ul class="interests-list">
-                <li>Animation</li>
-                <li>Anime</li>
-                <li>Storytelling</li>
-                <li>Japanese Culture</li>
+                <li>Learning Japanese</li>
+                <li>Ways of the Samurai</li>
                 <li>Chess</li>
+                <li>Anime</li>
+                <li>Reading books</li>
+                <li>Instrumental music</li>
+                <li>Drawing</li>
+                <li>Manga</li>
+                <li>Writing Poetry</li>
             </ul>
         </section>
-
-        <section id="hobbies" class="container section">
-            <h2>Hobbies</h2>
-            <ul class="hobbies-list">
-                <li>Meditation</li>
-                <li>Reading</li>
-                <li>Watching Anime</li>
-                <li>Playing Chess</li>
-            </ul>
+        <section id="motivations" class="container">
+            <h2>Motivations</h2>
+            <div class="motivation-list">
+                <div class="motivation-item">
+                    <h3>Storytelling</h3>
+                    <p>I am motivated by the potential of storytelling to evoke emotions and inspire others, aiming to create narratives that resonate deeply with my audience.</p>
+                </div>
+                <div class="motivation-item">
+                    <h3>Diversity in Storytelling</h3>
+                    <p>I believe in the importance of diversity in storytelling and aspire to include a wide range of perspectives and experiences in my animations.</p>
+                </div>
+                <div class="motivation-item">
+                    <h3>Inspiration from Animators</h3>
+                    <p>Renowned animators like Hayao Miyazaki and intricate character development in series like <em>Code Geass</em> inspire me to strive for excellence and creativity in my craft.</p>
+                </div>
+                <div class="motivation-item">
+                    <h3>Self-Improvement</h3>
+                    <p>My commitment to self-improvement and mindfulness through meditation reflects my desire to grow both personally and professionally.</p>
+                </div>
+                <div class="motivation-item">
+                    <h3>Continuous Learning</h3>
+                    <p>My interest in various subjects, such as samurai culture and the complexities of animation, showcases my enthusiasm for continuous learning and exploration.</p>
+                </div>
+            </div>
         </section>
-
-        <section id="considerations" class="container section">
+        <section id="considerations" class="container">
             <h2>Personal Considerations</h2>
             <ul class="considerations-list">
                 <li>Living with Duchenne muscular dystrophy (DMD)</li>
@@ -79,49 +398,40 @@
                 <li>Online work from home</li>
                 <li>Manageable workload</li>
             </ul>
+            <h2>Why This Matters?</h2>
+            <p>I believe I can make my impact with my unique experience. By sharing my personal considerations, I hope to foster a work environment that is understanding and accommodating. When my needs are met, I can fully engage my creativity and contribute positively to projects. This approach not only benefits me but also enriches the work culture by embracing diverse perspectives and experiences.</p>
         </section>
-
-        <footer class="container section">
+        <section id="contact" class="container">
             <h2>Contact</h2>
             <ul class="contact-list">
                 <li>Email: <a href="mailto:samarthravisapare@gmail.com">samarthravisapare@gmail.com</a></li>
                 <li>Phone: <a href="tel:+916363061137">+91 6363061137</a></li>
-                <li>Discord: <a href="#">ren_kendo</a></li>
+                <li>Discord: <a href="https://discord.com/users/ren_kendo">ren_kendo</a></li>
             </ul>
-        </footer>
-    </main>
-
+        </section>        
     <script>
         const toggleButton = document.querySelector('.toggle-button');
+        const body = document.body;
+
         toggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                toggleButton.textContent = 'Toggle Light Mode';
-            } else {
-                toggleButton.textContent = 'Toggle Dark Mode';
-            }
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
         });
 
-        const sections = document.querySelectorAll('.section');
-        const observerOptions = {
-            root: null,
-            threshold: 0.1,
-        };
-
-        const observerCallback = (entries, observer) => {
+        // Intersection Observer for section animations
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
                 }
             });
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        }, { threshold: 0.1 });
 
         sections.forEach(section => {
             observer.observe(section);
         });
     </script>
 </body>
-</html>
+</html> s
