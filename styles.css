@@ -34,7 +34,7 @@ html, body {
 }
 
 .container {
-  width: 100%;
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
@@ -64,6 +64,10 @@ section {
   .project-link {
     padding: 0.4rem 0.8rem;
   }
+
+  .container {
+    padding: 0 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -81,6 +85,10 @@ section {
 
   nav a {
     font-size: 4vw;
+  }
+
+  .container {
+    padding: 0 0.5rem;
   }
 }
 
