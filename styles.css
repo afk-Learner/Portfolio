@@ -48,23 +48,54 @@ section {
 
 @media (max-width: 768px) {
   .container {
-      padding: 1rem;
+    padding: 1rem;
   }
 
   h1 {
-      font-size: 2.5rem;
+    font-size: 2.5rem;
   }
 
   h2 {
-      font-size: 2rem;
+    font-size: 2rem;
+  }
+
+  .project-link {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .project-link {
+    padding: 0.3rem 0.6rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
+
+  section {
+    margin: 2rem 0;
   }
 }
 
 .contact-list a {
-  text-decoration: none; 
-  color: inherit; 
+  text-decoration: none;
+  color: inherit;
 }
 
 .contact-list a:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
